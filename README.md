@@ -54,3 +54,25 @@ eb create --cfg savedconfig
 ```
  eb config --cfg v1
 ```
+* to set env use the below command
+
+```
+eb setenv ENVVAR=TEST
+```
+
+* to print env use the below command
+
+```
+eb printenv
+```
+
+* to check the available options, check the below link
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-autoscalingasg
+
+
+* import value in option_settings:
+```
+option_settings:
+  aws:elasticbeanstalk:application:environment:
+    TOPIC_ARN: '`{ "Fn::ImportValue" : "NotificationTopicArn" }`'
+```
