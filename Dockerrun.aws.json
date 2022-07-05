@@ -12,6 +12,12 @@
       "host": {
         "sourcePath": "/var/app/current/proxy/conf.d"
       }
+    },
+    {
+       "name": "html-static-files",
+       "host": {
+          "sourcePath": "/var/app/current/html"
+        }
     }  
   ],
   "containerDefinitions": [
@@ -37,6 +43,10 @@
         {
           "hostPort": 80,
           "containerPort": 80
+        },
+        {
+           "hostPort": 8080,
+           "containerPort": 8080          
         }
       ],
       "links": [
@@ -52,6 +62,11 @@
           "sourceVolume": "nginx-proxy-conf",
           "containerPath": "/etc/nginx/conf.d",
           "readOnly": true
+        },
+        {
+           "sourceVolume": "html-static-files",
+           "containerPath": "/usr/share/nginx/html",
+           "readOnly": true
         },
         {
           "sourceVolume": "awseb-logs-nginx-proxy",
